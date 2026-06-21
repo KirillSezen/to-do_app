@@ -1,0 +1,116 @@
+body {
+	margin: 0;
+	padding: 0;
+	font-weight: 400;
+	font-size: 14px;
+}
+
+/*header*/
+header {
+	background-color: #808080;
+	width: 100%;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	height: 70px;
+	position: fixed;
+}
+
+header p {
+	margin-top: 0;
+	font-size: 56px;
+}
+
+#logo_1 {
+	color: #323131;
+}
+
+#logo_2 {
+	color: #ffd900;
+}
+
+/*main-content*/
+.content {
+	padding: 0;
+	margin: 0;
+	font-weight: 400;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	max-height: fit-content;
+}
+
+/*add input*/
+.add-container {
+	margin-top: 150px;
+	display: flex;
+	width: 50%;
+	justify-content: center;
+}
+
+.add-input {
+	width: 100%;
+	padding: 15px;
+	border: none;
+	background-color: #bbb8b8;
+	border-radius: 10px 0 0 10px;
+}
+
+.add-button {
+	color: #ffd900;
+	border: none;
+	font-size: 14px;
+	background-color: #808080;
+	border-radius: 0 10px 10px 0;
+}
+
+/**/
+.window {
+	margin: 30px 0;
+	width: 50%;
+	max-height: fit-content;
+	background-color: #bbb8b8;
+	border-radius: 10px;
+}
+
+.list {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.item-label {
+	font-size: 25px;
+	transition: color 2s ease;
+}
+
+.list-item {
+	border-bottom: 2px solid #605e5e;
+	margin-right: 15px;
+	width: 80%;
+	margin: 10px 0;
+	padding-left: 20px;
+	display: flex;
+	justify-content: space-between;
+	text-align: left;
+}
+
+.list-check:checked + .item-label  {
+	text-decoration: line-through;
+	color: #a7a0a0;
+}
+
+.delete-button {
+	border: none;
+	background-color: #bbb8b8;
+	cursor: pointer;
+}
+
+.delete-button-icon {
+	width: 20px;
+	height: 20px;
+}
