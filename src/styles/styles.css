@@ -50,6 +50,11 @@ header p {
 	justify-content: center;
 }
 
+#add-form {
+	width: 100%;
+	display: flex;
+}
+
 .add-input {
 	width: 100%;
 	padding: 15px;

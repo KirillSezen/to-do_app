@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="/src/styles/styles.css" type="text/css">
+	<script src="/src/scripts/main.js"></script>
 	<title>todo-app</title>
 </head>
 <body>
@@ -17,58 +18,21 @@
 
 		<div class="add-container">
 
-			<input class="add-input" type="text" placeholder="Что делаем ?">
+			<form onsubmit="addItem(); return false;"  id="add-form">
+				<input required minlength="4" class="add-input" type="text" placeholder="Что делаем ?" >
 
-			<button class="add-button">Добавить</button>
+			<button type="submit" class="add-button">Добавить</button>
+
+			</form>
+
 
 		</div>
 
 		<div class="window">
 
-			<form class="list">
+			<div class="list">
 
-				<div class="list-item">
-					<div class="inner">
-
-						<input class="list-check" type="checkbox" id="item1">
-						<label class="item-label" for="item1">покушать</label>
-
-					</div>
-					
-					<button class="delete-button">
-						<img class="delete-button-icon" src="/src/images/trash-bin.webp" alt="">
-					</button>
-
-				</div>
-
-				<div class="list-item">
-
-					<div class="inner">
-						<input class="list-check" type="checkbox" id="item2">
-						<label class="item-label" for="item2">сварить пельмени</label>
-					</div>
-
-					<button class="delete-button">
-						<img class="delete-button-icon" src="/src/images/trash-bin.webp" alt="">
-					</button>
-
-				</div>
-				
-				<div class="list-item">
-					<div class="inner">
-
-						<input class="list-check" type="checkbox" id="item3">
-						<label class="item-label" for="item3">заняться спортом</label>
-
-					</div>
-					
-					<button class="delete-button">
-						<img class="delete-button-icon" src="/src/images/trash-bin.webp" alt="">
-					</button>
-
-				</div>
-
-			</form>
+			</div>
 
 		</div>
 
