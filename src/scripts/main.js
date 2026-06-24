@@ -1,12 +1,30 @@
 let idCounter = 4;
 
 window.onload = function () {
-	addToLocalStorage(1, 'Тестовое задание 1');
-	addToLocalStorage(2, 'Тестовое задание 2');
-	addToLocalStorage(3, 'Тестовое задание 3');
+	if (!sessionStorage.getItem('isFirstVisit')) {      
+      sessionStorage.setItem('isFirstVisit', 'true');
+			addToLocalStorage(1, 'Тестовое задание 1');
+			addToLocalStorage(2, 'Тестовое задание 2');
+			sessionStorage.setItem(1, false);
+			sessionStorage.setItem(2, false);
+  }
+	
 	Object.keys(localStorage).forEach((el) => {
-		addListItem(el, localStorage.getItem(el))
+		addListItem(el, localStorage.getItem(el));
+		restoreCheckboxState(el);
 	})
+}	
+
+const restoreCheckboxState = (itemId) => {
+	const checkbox = document.getElementById(itemId);
+	if (checkbox) {
+		const savedState = sessionStorage.getItem(itemId);
+		if (savedState === 'true') {
+			checkbox.checked = true;
+		} else if (savedState === 'false') {
+			checkbox.checked = false;
+		}
+	}
 }
 
 const addItem = (itemId = idCounter, text = null) => {
@@ -15,6 +33,8 @@ const addItem = (itemId = idCounter, text = null) => {
 
 	addListItem(itemId, inputText);
 	addToLocalStorage(itemId, inputText);
+
+	sessionStorage.setItem(itemId, false);	
 }
 
 const addToLocalStorage = (itemId, inputText) => {
@@ -34,6 +54,9 @@ const addListItem = (itemId = idCounter, inputText) => {
 	listCheck.className = 'list-check';
 	listCheck.type = 'checkbox';
 	listCheck.id = itemId;
+	listCheck.addEventListener('click', () => {
+		sessionStorage.setItem(itemId, listCheck.checked);
+	})
 
 	const itemLabel = document.createElement('label');
 	itemLabel.className = 'item-label';
@@ -50,6 +73,8 @@ const addListItem = (itemId = idCounter, inputText) => {
 	deleteButton.addEventListener('click', () => {
 		const item = document.getElementById(itemId);
 		item.parentElement.parentElement.remove()
+		localStorage.removeItem(itemId);
+		sessionStorage.removeItem(itemId);
 	});
 
 	inner.appendChild(listCheck);
