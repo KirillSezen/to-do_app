@@ -1,4 +1,5 @@
-let idCounter = 4;
+let idCounter = 3;
+let idOfActiveItem;
 
 window.onload = function () {
 	if (!sessionStorage.getItem('isFirstVisit')) {      
@@ -47,8 +48,11 @@ const addListItem = (itemId = idCounter, inputText) => {
 	const listItem = document.createElement('div');
 	listItem.className = 'list-item';
 
-	const inner = document.createElement('div');
-	inner.className = 'inner';
+	const innerText = document.createElement('div');
+	innerText.className = 'inner';
+
+	const innerButtons = document.createElement('div');
+	innerButtons.className = 'inner';
 
 	const listCheck = document.createElement('input');
 	listCheck.className = 'list-check';
@@ -65,7 +69,11 @@ const addListItem = (itemId = idCounter, inputText) => {
 
 	const deleteImage = document.createElement('img');
 	deleteImage.className = 'delete-button-icon';
-	deleteImage.src = '/src/images/trash-bin.webp';
+	deleteImage.src = '/src/images/trash.png';
+
+	const editImage = document.createElement('img');
+	editImage.className = 'delete-button-icon';
+	editImage.src = '/src/images/pen.png';
 
 	const deleteButton = document.createElement('button');
 	deleteButton.className = 'delete-button';
@@ -77,13 +85,43 @@ const addListItem = (itemId = idCounter, inputText) => {
 		sessionStorage.removeItem(itemId);
 	});
 
-	inner.appendChild(listCheck);
-	inner.appendChild(itemLabel);
-	listItem.appendChild(inner);
-	listItem.appendChild(deleteButton);
+	const editButton = document.createElement('button');
+	editButton.className = 'delete-button';
+	editButton.appendChild(editImage);	
+	editButton.addEventListener('click', () => {
+		const window = document.getElementById('edit-window-1');
+    window.style.display = "block";
+		window.style.position = 'fixed';
+		document.getElementById('edit-input-1').value = inputText;
+		idOfActiveItem = itemId;
+	});
+
+	innerText.appendChild(listCheck);
+	innerText.appendChild(itemLabel);
+	innerButtons.appendChild(editButton);
+	innerButtons.appendChild(deleteButton);
+	listItem.appendChild(innerText);
+	listItem.appendChild(innerButtons);
 	list[0].appendChild(listItem);
 
 	if (itemId === idCounter) idCounter++;
 	
 	document.getElementById('add-form').reset();
+}
+
+const cancelEdit = () => {
+	const window = document.getElementById('edit-window-1');
+  window.style.display = "none";
+}
+
+const applyEdit = () => {
+	const window = document.getElementById('edit-window-1');
+  window.style.display = "none";
+
+	const itemLabel = document.getElementById(idOfActiveItem);
+	itemLabel.textContent = document.getElementById('edit-input-1').value;
+
+	localStorage.setItem(idOfActiveItem, document.getElementById('edit-input-1').value);
+
+	location.reload();
 }

@@ -119,3 +119,39 @@ header p {
 	width: 20px;
 	height: 20px;
 }
+
+.edit-window {
+	display: none;
+	position: fixed;
+	margin-top: 350px;
+	z-index: 9999;
+	background-color: #a7a0a0;
+	width: 450px;
+	height: 250px;
+	border-radius: 15px;
+	text-align: center;
+}
+
+.edit-input {
+	border: none;
+	margin: 40px 50px 40px 40px;
+	width: 70%;
+	border-radius: 4px;
+	background-color: #bbb8b8;
+	padding: 10px;
+}
+
+.edit-button {
+	padding: 7px;
+	border-radius: 3px;
+	border: none;
+	width: 40%;
+	background-color: #605e5e;
+	margin: 0 8px;
+	color: #ffd900;
+}
+
+.edit-label {
+	margin-top: 25px;
+	font-size: 25px;
+}
